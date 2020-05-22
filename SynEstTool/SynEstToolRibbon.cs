@@ -71,9 +71,11 @@ namespace SynEstTool
 
             //Excel.Worksheet newsheet = activeworkbook.Worksheets.Add(Type.Missing, activeworkbook.Worksheets[count],Type.Missing,XlSheetType.xlWorksheet);
             //newsheet.Name = "Print List";
-            Excel.Application xlapp = null;
-            xlapp.DisplayAlerts = false;
-
+            //Excel.Application xlapp = null;
+            //xlapp.DisplayAlerts = false;
+            Worksheet activeworksheet = activeworkbook.ActiveSheet;
+            activeworksheet.PageSetup.Zoom = false;
+            activeworksheet.PageSetup.FitToPagesWide = 1;
 
         }
 
@@ -125,6 +127,7 @@ namespace SynEstTool
                     Act_Est_Functions n = new Act_Est_Functions();
                     worksheet_target = n.WorkSheetRemake("Print List", activeworkbook);
                     worksheet_source = worksheet;
+                    
                     checker1 = true;
                     break;
                 }
@@ -248,6 +251,10 @@ namespace SynEstTool
             //sorting 2 arrays together
             Array.Sort(FutureEst_DateArray, FutureEst_RowNum);
 
+            worksheet_target.PageSetup.Zoom = false;
+            worksheet_target.PageSetup.FitToPagesTall = false;
+            worksheet_target.PageSetup.FitToPagesWide = 1;
+
             //go through the array to pick up the rows.
             //internal counter to check on the date, and see if a title needs to be generated
             int counter = 0;
@@ -276,6 +283,7 @@ namespace SynEstTool
                 //step 5
                 //the following needs to be looped till sheet runs out.
                 active_Est_List = new Active_Est_List(rowData, newArray);
+                
                 //check if bid close at the same date, if it is not date with previous one then add header
                 if (counter == 0 || (FutureEst_DateArray[counter] != FutureEst_DateArray[counter - 1]))
                 {
@@ -289,14 +297,37 @@ namespace SynEstTool
                     range.Font.Bold = true;
                     range.Font.Color = ColorTranslator.ToOle(Color.White);
                     range.Interior.Color = ColorTranslator.FromHtml("#9c88b3");
+                    range.NumberFormat = "dddd, mmmm d, yyyy";
                     worksheet_target_Row++;
+                    
                 }
-                counter++;
 
                 m.Est_Item_CopyPasteFormat(active_Est_List, worksheet_target, worksheet_target_Row, 1);
                 worksheet_target_Row += 10;
+                
+                if ((counter % 5) == 3 || counter == 3) //add page break every 5 items, with exception to the first one, as 2 items added for example and header.
+                {
+                    worksheet_target.HPageBreaks.Add(worksheet_target.Rows[worksheet_target_Row]);
+                }
 
+                counter++;
             }
+
+            
+
+            foreach (VPageBreak vPageBreak in worksheet_target.VPageBreaks)
+            {
+                vPageBreak.Delete();
+            }
+
+            worksheet_target.VPageBreaks.Add(worksheet_target.Columns[5]);
+
+            
+
+            worksheet_target.PageSetup.PaperSize = XlPaperSize.xlPaperLetter;
+            
+            worksheet_target.PageSetup.PrintArea = "A1:E"+worksheet_target_Row.ToString();
+
             stopWatch.Stop();
         }
 
@@ -463,6 +494,7 @@ namespace SynEstTool
             range.Font.Size = 9;
             range = worksheet.Cells[3, 5];
             range.Value = DateTime.Today.Date;
+            range.NumberFormat = "dddd, mmmm d, yyyy";
             range.Font.Size = 8;
             range = worksheet.Range["A4:E4"];
             range.Borders[XlBordersIndex.xlEdgeBottom].LineStyle = XlLineStyle.xlContinuous;
@@ -508,7 +540,7 @@ namespace SynEstTool
         public void Est_Item_CopyPasteFormat (Active_Est_List list, Worksheet worksheet, int row, int col)//(class, targetsheet, target row, target col)
         {
             int i = col; //store the col value
-
+            Range range;
             //first row
             worksheet.Cells[row, col  ] = list.Est_List_ProjectName;
             worksheet.Cells[row, col].Font.Size = 9;
@@ -516,6 +548,8 @@ namespace SynEstTool
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_EstLead;
             worksheet.Cells[row, ++col] = list.Est_List_EstLeadRevDate;
+            range = worksheet.Cells[row, col];
+            range.Interior.Color = ColorTranslator.FromHtml("#ffcccc");
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //second row
@@ -524,6 +558,9 @@ namespace SynEstTool
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_ChiefEstimator;
             worksheet.Cells[row, ++col] = list.Est_List_ChfEstRevDate;
+            range = worksheet.Cells[row, col];
+            
+            range.Interior.Color = ColorTranslator.FromHtml("#ffcccc");
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //third row
