@@ -325,7 +325,7 @@ namespace SynEstTool
             
 
             worksheet_target.PageSetup.PaperSize = XlPaperSize.xlPaperLetter;
-            
+            worksheet_target.PageSetup.Orientation = XlPageOrientation.xlPortrait;
             worksheet_target.PageSetup.PrintArea = "A1:E"+worksheet_target_Row.ToString();
 
             stopWatch.Stop();
