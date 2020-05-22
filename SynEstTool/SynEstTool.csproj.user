@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\</PublishUrlHistory>
-    <InstallUrlHistory>https://www.byother.ca/</InstallUrlHistory>
+    <InstallUrlHistory>https://www.byothers.ca/for downloads/|https://www.byother.ca/for downloads/</InstallUrlHistory>
     <SupportUrlHistory>https://www.byothers.ca</SupportUrlHistory>
   </PropertyGroup>
 </Project>
