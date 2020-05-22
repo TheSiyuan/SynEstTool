@@ -1,0 +1,14 @@
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Release\SynEstTool.dll.config
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Release\SynEstTool.dll
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Release\SynEstTool.pdb
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Release\SynEstTool.dll.manifest
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Release\SynEstTool.vsto
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.Properties.Resources.resources
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.SheetSelector.resources
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.SynEstToolRibbon.resources
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.csproj.GenerateResource.cache
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.csproj.CoreCompileInputs.cache
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.csproj.CopyComplete
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.dll
+C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Release\SynEstTool.pdb

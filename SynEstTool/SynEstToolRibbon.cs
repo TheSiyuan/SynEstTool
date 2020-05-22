@@ -541,6 +541,8 @@ namespace SynEstTool
         {
             int i = col; //store the col value
             Range range;
+            
+            bool cterm = (list.Est_List_CTerm != "No C-Term");
             //first row
             worksheet.Cells[row, col  ] = list.Est_List_ProjectName;
             worksheet.Cells[row, col].Font.Size = 9;
@@ -554,13 +556,46 @@ namespace SynEstTool
             col = i;
             //second row
             worksheet.Cells[row, col  ] = list.Est_List_EstValue;
+            var estvalue = (worksheet.Cells[row, col].Value2);
+            try
+            {
+                estvalue = estvalue / 1000000;
+            }
+            catch (Exception error)
+            {
+                estvalue = 0.5;
+            }
+
             worksheet.Cells[row, ++col] = list.Est_List_OwnerName;
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_ChiefEstimator;
             worksheet.Cells[row, ++col] = list.Est_List_ChfEstRevDate;
+
+            //Review critiria
             range = worksheet.Cells[row, col];
-            
-            range.Interior.Color = ColorTranslator.FromHtml("#ffcccc");
+            if (cterm == true)
+            {
+                if (estvalue < 1)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+            else
+            {
+                if (estvalue < 5)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //third row
@@ -569,6 +604,40 @@ namespace SynEstTool
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_SPLPrsdntRevDate;
+
+            //Review critiria
+            range = worksheet.Cells[row, col];
+            if (cterm == true)
+            {
+                if (estvalue < 1)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue <5)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+            else
+            {
+                if (estvalue < 5)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 15)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //forth row
@@ -577,6 +646,39 @@ namespace SynEstTool
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_SGCPrsdntRevDate;
+            
+            //review critiria
+            range = worksheet.Cells[row, col];
+            if (cterm == true)
+            {
+                if (estvalue < 5)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 15)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+            else
+            {
+                if (estvalue < 15)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 50)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //fifth row
@@ -585,6 +687,38 @@ namespace SynEstTool
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_OpsMngrRevDate;
+            //review critiria
+            range = worksheet.Cells[row, col];
+            if (cterm == true)
+            {
+                if (estvalue < 5)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 15)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+            else
+            {
+                if (estvalue < 15)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 50)
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //sixth row
@@ -593,6 +727,38 @@ namespace SynEstTool
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_EstmtrPrpslWrtr;
             worksheet.Cells[row, ++col] = list.Est_List_VPCOO;
+            //review critiria
+            range = worksheet.Cells[row, col];
+            if (cterm == true)
+            {
+                if (estvalue < 5)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 15)
+                {
+                    range.Value = "";
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
+            else
+            {
+                if (estvalue < 15)
+                {
+                    range.Value = "";
+                }
+                else if (estvalue < 50)
+                {
+                    range.Value = "";
+                }
+                else
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                }
+            }
             worksheet.Rows[row++].Font.Size = 9;
             worksheet.Rows[row++].RowHeight = 4;
             col = i;

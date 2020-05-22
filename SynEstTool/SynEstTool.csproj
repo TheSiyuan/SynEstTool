@@ -28,22 +28,22 @@
     <AssemblyName>SynEstTool</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
-    <IsWebBootstrapper>False</IsWebBootstrapper>
+    <IsWebBootstrapper>True</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PublishUrl>publish\</PublishUrl>
-    <InstallUrl />
+    <InstallUrl>https://www.byother.ca/</InstallUrl>
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.1</ApplicationVersion>
+    <ApplicationVersion>1.0.0.2</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
-    <UpdateInterval>7</UpdateInterval>
+    <UpdateInterval>0</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
     <ProductName>SynEstTool</ProductName>
-    <PublisherName />
-    <SupportUrl />
+    <PublisherName>BYOTHERS INC.</PublisherName>
+    <SupportUrl>https://www.byothers.ca</SupportUrl>
     <FriendlyName>SynEstTool</FriendlyName>
     <OfficeApplicationDescription />
-    <LoadBehavior>3</LoadBehavior>
+    <LoadBehavior>16</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -245,6 +245,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>79D3E57210CC49671A393DC06AF420C97298C389</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SynEstTool_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
