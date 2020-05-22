@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <appSettings>
+    <add key="Est_List_Activate_Code" value="" />
+    <add key="Est_List_SourceSheet" value="Budgets and Estimates" />
+    <add key="Est_List_ProjectName" value="1" />
+    <add key="Est_List_City" value="14" />
+    <add key="Est_List_Province" value="15" />
+    <add key="Est_List_EstLead" value="6" />
+    <add key="Est_List_EstLeadRevDate" value="1" />
+    <add key="Est_List_EstValue" value="8" />
+    <add key="Est_List_CTerm" value="21" />
+    <add key="Est_List_OwnerName" value="13" />
+    <add key="Est_List_ChiefEstimator" value="6" />
+    <add key="Est_List_ChfEstRevDate" value="1" />
+    <add key="Est_List_SubmissionType" value="16" />
+    <add key="Est_List_FundSource" value="22" />
+    <add key="Est_List_SPLPrsdntRevDate" value="1" />
+    <add key="Est_List_Category" value="17" />
+    <add key="Est_List_NumBidder" value="18" />
+    <add key="Est_List_Designer" value="12" />
+    <add key="Est_List_SGCPrsdntRevDate" value="1" />
+    <add key="Est_List_ProjDelivery" value="19" />
+    <add key="Est_List_Contract" value="20" />
+    <add key="Est_List_BidCloseTime" value="5" />
+    <add key="Est_List_BidCloseDate" value="4" />
+    <add key="Est_List_OpsMngrRevDate" value="1" />
+    <add key="Est_List_EstNumber" value="0" />
+    <add key="Est_List_PreBidDate" value="23" />
+    <add key="Est_List_PreBidTime" value="24" />
+    <add key="Est_List_EstmtrPrpslWrtr" value="1" />
+    <add key="Est_List_VPCOO" value="1" />
+    <add key="Key0" value="1" />
+    <add key="EstDataTitleRow" value="8" />
+    <add key="ClientSettingsProvider.ServiceUri" value="" />
+  </appSettings>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+</configuration>
