@@ -29,42 +29,11 @@ namespace SynEstTool
             //Excel.Application xlapp = new Microsoft.Office.Interop.Excel.Application();
             //xlapp.DisplayAlerts = false;
         }
-
-        //not used.
-
-        //public void Ribbon_Activation()
-        //{
-        //    group2.Visible = false;
-        //    try
-        //    {
-        //        Excel.Workbook activeworkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
-        //        if (activeworkbook != null)
-        //        {
-        //            string sattr;
-        //            sattr = ConfigurationManager.AppSettings.Get("est_list_sourcesheet");
-        //            foreach (Microsoft.Office.Interop.Excel.Worksheet worksheet in activeworkbook.Worksheets)
-        //            {
-        //                if (worksheet.Name.Contains(sattr))
-        //                {
-        //                    group2.Visible = true;
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (NullReferenceException error)
-        //    {
-        //        Debug.WriteLine("excel not starting");
-        //    }
-        //}
-
         
         public string[] strarr1 = new string[] { "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3", "1", "2", "3" };
         //being used for testing
         private void BtnStart_Click(object sender, RibbonControlEventArgs e)
         {
-            //Act_Est_Functions n = new Act_Est_Functions();
-            //Active_Est_List newList = new Active_Est_List(strarr1, n.Est_List_Col_Array());
 
             Excel.Workbook activeworkbook = Globals.ThisAddIn.Application.ActiveWorkbook;
             //int count = activeworkbook.Worksheets.Count;
