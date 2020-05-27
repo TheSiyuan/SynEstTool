@@ -43,8 +43,11 @@ namespace SynEstTool
             //Excel.Application xlapp = null;
             //xlapp.DisplayAlerts = false;
             Worksheet activeworksheet = activeworkbook.ActiveSheet;
-            activeworksheet.PageSetup.Zoom = false;
-            activeworksheet.PageSetup.FitToPagesWide = 1;
+            var testVar = activeworksheet.Cells[1, 1].Value2;
+            if (testVar == null)
+            {
+                testVar = 0;
+            }
 
         }
 
@@ -138,9 +141,9 @@ namespace SynEstTool
             Active_Est_List active_Est_List = null;
             
             //read setting of column number for closing date stored at.
-            //sDate needs to be added by 1 as excel column number starts with 1
-            int sDate = int.Parse(ConfigurationManager.AppSettings.Get("Est_List_BidCloseDate")) +1;
-            
+            //ClosingDate and BudgetUpdateDate needs to be added by 1 as excel column number starts with 1
+            int intClosingDate = int.Parse(ConfigurationManager.AppSettings.Get("Est_List_BidCloseDate")) +1;
+            int intBudgetUpdateDate= int.Parse(ConfigurationManager.AppSettings.Get("Est_List_BudgetUpdateDate")) + 1;
             //use newArray to temporarily store the col mapping, so that this function is not getting called when reading each line.
             Act_Est_Functions m = new Act_Est_Functions();
             var newArray = m.Est_List_Col_Array();
@@ -158,38 +161,66 @@ namespace SynEstTool
             double[] FutureEst_DateArray = new double[0];
             int TotalLegitRow = 0;
 
-            while (worksheet_source.Cells[EstDataTitleRow, 1].Value2 != null)
+            while (worksheet_source.Cells[EstDataTitleRow, 3].Value2 != "Closed")
             {
-                //rRow = worksheet_source.Rows[EstDataTitleRow];
+                // if the status is not closed, then the data needs to be pulled
                 try
                 {
-                    var BidCloseDate = worksheet_source.Cells[EstDataTitleRow, sDate].Value;
+                    Array.Resize(ref FutureEst_DateArray, FutureEst_DateArray.Length + 1);
+                    Array.Resize(ref FutureEst_RowNum, FutureEst_RowNum.Length + 1);
+                    FutureEst_RowNum[TotalLegitRow] = EstDataTitleRow;
+
+                    //pick the later date from either the bid close date or budget update date.
+                    //using value 2 to simply compare the value
+                    var BidCloseDate = worksheet_source.Cells[EstDataTitleRow, intClosingDate].Value2;
+                    var BudgetUpdateDate = worksheet_source.Cells[EstDataTitleRow, intBudgetUpdateDate].Value2;
+                    if (BidCloseDate == null)
+                    {
+                        BidCloseDate = 0;
+                    }
+                    if (BudgetUpdateDate == null)
+                    {
+                        BudgetUpdateDate = 0;
+                    }
+                    if (BidCloseDate < BudgetUpdateDate)
+                    {
+                        intClosingDate = intBudgetUpdateDate; //then reads budget update date instead
+                    }
+                    else if (BidCloseDate == 0)
+                    {
+                        throw new OngGoingEstimateWithNoDate("Row " + EstDataTitleRow.ToString());
+                    }
+
+                    FutureEst_DateArray[TotalLegitRow] = worksheet_source.Cells[EstDataTitleRow, intClosingDate].Value2;
+                    TotalLegitRow++;
 
                     //there is null fields, catch in the catch section
-                    Type type = BidCloseDate.GetType();
+                    //Type type1 = BidCloseDate.GetType();
+                    //Type type2 = BudgetUpdateDate.GetType();
                     //bool tempbool = (BidCloseDate >= today);
                     //Debug.WriteLine(tempbool);
-                    if (type != typeof(System.DateTime))
-                    {
-                        //if the type is not datetime then the format is wrong
-                        //but I haven't decided what happens here.
-                        //with current try-catch logic this will roll to next row.
-                        throw new DateTimeFormatError("Row " + EstDataTitleRow.ToString() + " Date Format Incorrect");
 
-                    }
+                    //if (type != typeof(System.DateTime))
+                    //{
+                    //    //if the type is not datetime then the format is wrong
+                    //    //but I haven't decided what happens here.
+                    //    //with current try-catch logic this will roll to next row.
+                    //    throw new DateTimeFormatError("Row " + EstDataTitleRow.ToString() + " Date Format Incorrect");
 
-                    //step 4
-                    else if (DateTime.Compare(BidCloseDate,today) >= 0)
-                    {
-                        //2020-05-20 code added below to first read all the dates and store the row # in an array.
-                        Array.Resize(ref FutureEst_DateArray, FutureEst_DateArray.Length + 1);
-                        Array.Resize(ref FutureEst_RowNum, FutureEst_RowNum.Length + 1);
-                        FutureEst_RowNum[TotalLegitRow] = EstDataTitleRow;
-                        FutureEst_DateArray[TotalLegitRow] = worksheet_source.Cells[EstDataTitleRow, sDate].Value2;
-                        TotalLegitRow++;
+                    //}
+
+                    ////step 4
+                    //else if (DateTime.Compare(BidCloseDate,today) >= 0)
+                    //{
+                    //    //2020-05-20 code added below to first read all the dates and store the row # in an array.
+                    //    Array.Resize(ref FutureEst_DateArray, FutureEst_DateArray.Length + 1);
+                    //    Array.Resize(ref FutureEst_RowNum, FutureEst_RowNum.Length + 1);
+                    //    FutureEst_RowNum[TotalLegitRow] = EstDataTitleRow;
+                    //    FutureEst_DateArray[TotalLegitRow] = worksheet_source.Cells[EstDataTitleRow, intClosingDate].Value2;
+                    //    TotalLegitRow++;
 
 
-                    }
+                    //}
                 }
                 catch (DateTimeFormatError error)
                 {
@@ -198,6 +229,11 @@ namespace SynEstTool
                 catch (RuntimeBinderException error)
                 {
 
+                }
+                
+                catch (OngGoingEstimateWithNoDate error)
+                {
+                    FutureEst_DateArray[TotalLegitRow] = 99999999;
                 }
                 //catch (Exception error)
                 //{
@@ -213,7 +249,7 @@ namespace SynEstTool
             }
             else
             {
-                MessageBox.Show("No Future Estimate Found");
+                MessageBox.Show("No Ongoing Estimate Found");
                 return;
             }
 
@@ -236,8 +272,8 @@ namespace SynEstTool
                 int i = 0;
                 foreach (Range rCell in rRow.Cells)
                 {
-                    string dynamic = rCell.Text;//string type to ease combining and avoid error
-                    rowData[i] = dynamic;
+                    string CellText = rCell.Text;//string type to ease combining and avoid error
+                    rowData[i] = CellText;
                     ++i;
                     if (i >= DataCount)
                     {
@@ -249,15 +285,25 @@ namespace SynEstTool
 
                 }
 
-                //step 5
+                //step 5 and step 6 at the same time
                 //the following needs to be looped till sheet runs out.
                 active_Est_List = new Active_Est_List(rowData, newArray);
                 
+                //add date or grey line based on if date equals to previous date
+                Range range = worksheet_target.Range[worksheet_target.Cells[worksheet_target_Row, 1], worksheet_target.Cells[worksheet_target_Row, 5]];
                 //check if bid close at the same date, if it is not date with previous one then add header
-                if (counter == 0 || (FutureEst_DateArray[counter] != FutureEst_DateArray[counter - 1]))
+                if (counter == 0 || (FutureEst_DateArray[counter] != FutureEst_DateArray[counter - 1])) // if at beginning of the loop or date is equal to previous date
                 {
-                    Range range = worksheet_target.Range[worksheet_target.Cells[worksheet_target_Row,1], worksheet_target.Cells[worksheet_target_Row, 5]];
-                    range.Value = active_Est_List.Est_List_BidCloseDate;
+                    if (FutureEst_DateArray[TotalLegitRow] == 99999999)
+                    {
+                        range.Value = "On Going";
+                    }
+                    else
+                    {
+                        range.Value = active_Est_List.Est_List_BidCloseDate;
+                        range.NumberFormat = "dddd, mmmm d, yyyy";
+                    }
+                    
                     range.Merge();
                     range.HorizontalAlignment = XlHAlign.xlHAlignLeft;
                     range.VerticalAlignment = XlVAlign.xlVAlignCenter;
@@ -266,9 +312,14 @@ namespace SynEstTool
                     range.Font.Bold = true;
                     range.Font.Color = ColorTranslator.ToOle(Color.White);
                     range.Interior.Color = ColorTranslator.FromHtml("#9c88b3");
-                    range.NumberFormat = "dddd, mmmm d, yyyy";
+
                     worksheet_target_Row++;
                     
+                }
+                else //if same date then add grey line
+                {
+                    range.Interior.Color = ColorTranslator.FromHtml("#696969");
+                    worksheet_target_Row++;
                 }
 
                 m.Est_Item_CopyPasteFormat(active_Est_List, worksheet_target, worksheet_target_Row, 1);
@@ -283,7 +334,7 @@ namespace SynEstTool
             }
 
             
-
+            //formatting page breaks
             foreach (VPageBreak vPageBreak in worksheet_target.VPageBreaks)
             {
                 vPageBreak.Delete();
@@ -310,6 +361,13 @@ namespace SynEstTool
         public class DateTimeFormatError:Exception
         {
             public DateTimeFormatError(string message): base(message)
+            {
+
+            }
+        }
+        public class OngGoingEstimateWithNoDate : Exception
+        {
+            public OngGoingEstimateWithNoDate(string message) : base(message)
             {
 
             }
@@ -652,7 +710,7 @@ namespace SynEstTool
             col = i;
             //fifth row
             worksheet.Cells[row, col  ] = list.Est_List_ProjDeliveryContractType();
-            worksheet.Cells[row, ++col] = list.Est_List_BidCloseDateTime();
+            worksheet.Cells[row, ++col] = list.Est_List_BidCloseDate;
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = "";
             worksheet.Cells[row, ++col] = list.Est_List_OpsMngrRevDate;
@@ -762,6 +820,7 @@ namespace SynEstTool
         public string Est_List_Contract { get; set; } //Contract
         public string Est_List_BidCloseTime { get; set; }
         public string Est_List_BidCloseDate { get; set; }
+        public string Est_List_BudgetUpdateDate { get; set; }
         public string Est_List_OpsMngrRevDate { get; set; }
         public string Est_List_EstNumber { get; set; }
 
@@ -770,11 +829,11 @@ namespace SynEstTool
         public string Est_List_EstmtrPrpslWrtr { get; set; } //proposal writer
         public string Est_List_VPCOO { get; set; }
 
-        public string Est_List_BidCloseDateTime()
-        {
-            string DT = this.Est_List_BidCloseDate + " / " + this.Est_List_BidCloseTime;
-            return DT;
-        }
+        //public string Est_List_BidCloseDateTime()
+        //{
+        //    string DT = this.Est_List_BidCloseDate + " / " + this.Est_List_BidCloseTime;
+        //    return DT;
+        //}
         public string Est_List_ProjDeliveryContractType()
         {
             string PDCT = this.Est_List_ProjDelivery + " / " + this.Est_List_Contract;
