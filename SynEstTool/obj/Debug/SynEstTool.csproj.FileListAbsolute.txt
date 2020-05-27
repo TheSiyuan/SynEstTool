@@ -28,18 +28,3 @@ E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS
 E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.dll
 E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.pdb
 E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csprojAssemblyReference.cache
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll.config
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.pdb
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll.manifest
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.vsto
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csprojAssemblyReference.cache
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.Properties.Resources.resources
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.SheetSelector.resources
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.SynEstToolRibbon.resources
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csproj.GenerateResource.cache
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csproj.CoreCompileInputs.cache
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csproj.CopyComplete
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.dll
-C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\obj\Debug\SynEstTool.pdb
