@@ -193,6 +193,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReviewCriteria.resx">
+      <DependentUpon>ReviewCriteria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SheetSelector.resx">
       <DependentUpon>SheetSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +209,12 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewCriteria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReviewCriteria.Designer.cs">
+      <DependentUpon>ReviewCriteria.cs</DependentUpon>
     </Compile>
     <Compile Include="SheetSelector.cs">
       <SubType>Form</SubType>
