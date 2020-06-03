@@ -13,21 +13,6 @@ C:\Users\swei\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Fi
 C:\Users\swei\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.dll
 C:\Users\swei\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.pdb
 C:\Users\swei\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csprojAssemblyReference.cache
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll.config
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\bin\Debug\SynEstTool.pdb
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll.manifest
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\bin\Debug\SynEstTool.vsto
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.Properties.Resources.resources
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.SheetSelector.resources
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.SynEstToolRibbon.resources
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csproj.GenerateResource.cache
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csproj.CoreCompileInputs.cache
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csproj.CopyComplete
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.dll
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.pdb
-E:\WSY one drive\OneDrive\Documents\Work\Synergy Stuff\Kevin's Estimate - big\VS Files\SynEstTool\SynEstTool\obj\Debug\SynEstTool.csprojAssemblyReference.cache
 C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll.config
 C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.dll
 C:\Users\swei\OneDrive - Synergy Group of Companies\Documents\GitHub\SynEstTool\SynEstTool\bin\Debug\SynEstTool.pdb
