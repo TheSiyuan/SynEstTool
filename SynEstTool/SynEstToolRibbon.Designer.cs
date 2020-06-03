@@ -41,6 +41,7 @@
             this.group2 = this.Factory.CreateRibbonGroup();
             this.Btn_PrintEstList = this.Factory.CreateRibbonButton();
             this.Btn_ColMap = this.Factory.CreateRibbonButton();
+            this.BtnRevCrit = this.Factory.CreateRibbonButton();
             this.synestribbon.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -77,6 +78,7 @@
             // 
             this.group2.Items.Add(this.Btn_PrintEstList);
             this.group2.Items.Add(this.Btn_ColMap);
+            this.group2.Items.Add(this.BtnRevCrit);
             this.group2.Label = "group2";
             this.group2.Name = "group2";
             // 
@@ -91,6 +93,12 @@
             this.Btn_ColMap.Label = "Column Mapping";
             this.Btn_ColMap.Name = "Btn_ColMap";
             this.Btn_ColMap.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Btn_ColMap_Click);
+            // 
+            // BtnRevCrit
+            // 
+            this.BtnRevCrit.Label = "Review Criteria";
+            this.BtnRevCrit.Name = "BtnRevCrit";
+            this.BtnRevCrit.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnRevCrit_Click);
             // 
             // SynEstToolRibbon
             // 
@@ -117,6 +125,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Btn_PrintEstList;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton Btn_ColMap;
         public Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton BtnRevCrit;
     }
 
     partial class ThisRibbonCollection

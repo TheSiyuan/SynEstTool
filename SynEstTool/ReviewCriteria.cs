@@ -16,13 +16,20 @@ namespace SynEstTool
         public ReviewCriteria()
         {
             InitializeComponent();
+            foreach (Control control in this.Controls)
+            {
+                if (control is System.Windows.Forms.TextBox)
+                {
+                    control.Text = ConfigurationManager.AppSettings.Get(control.Name);
+                }
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

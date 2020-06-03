@@ -89,6 +89,9 @@ namespace SynEstTool
             bool checker1 = false;
             sAttr = ConfigurationManager.AppSettings.Get("Est_List_SourceSheet");
 
+
+            
+
             //step 1
             foreach (Microsoft.Office.Interop.Excel.Worksheet worksheet in activeworkbook.Worksheets)
             {
@@ -346,6 +349,13 @@ namespace SynEstTool
 
             }
         }
+
+        private void BtnRevCrit_Click(object sender, RibbonControlEventArgs e)
+        {
+            ReviewCriteria reviewCriteria = new ReviewCriteria();
+            reviewCriteria.ShowDialog();
+
+        }
     }
 
     public class MappingForm_Make //stores functions for making mapping forms
@@ -493,7 +503,9 @@ namespace SynEstTool
             range = worksheet.Cells[3, 1];
             range.Font.Bold = true;
             range.Font.Size = 9;
-            range = worksheet.Cells[3, 5];
+            range = worksheet.Range["D3:E3"];
+            range.Merge();
+            range.HorizontalAlignment = XlHAlign.xlHAlignRight;
             range.Value = DateTime.Today.Date;
             range.NumberFormat = "dddd, mmmm d, yyyy";
             range.Font.Size = 8;
@@ -542,7 +554,7 @@ namespace SynEstTool
         {
             int i = col; //store the col value
             Range range;
-            
+            double value1, value2;
             bool cterm = (list.Est_List_CTerm != "No C-Term");
             worksheet.Rows[row++].RowHeight = 4;
             //first row
@@ -577,24 +589,33 @@ namespace SynEstTool
             range = worksheet.Cells[row, col];
             if (cterm == true)
             {
-                if (estvalue < 1)
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("ChfEstReview1"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("ChfEstReview2"));
+
+            }
+            else
+            {
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("ChfEstReview4"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("ChfEstReview5"));
+            }
+            if (estvalue < value1)
+            {
+                range.Value = "No Review";
+            }
+            else if (estvalue < value2)
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                if (range.Text == "")
                 {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Fee Review";
                 }
             }
             else
             {
-                if (estvalue < 5)
+                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                if (range.Text == "")
                 {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Full Review";
                 }
             }
 
@@ -611,32 +632,33 @@ namespace SynEstTool
             range = worksheet.Cells[row, col];
             if (cterm == true)
             {
-                if (estvalue < 1)
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("SPLPrsReview1"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("SPLPrsReview2"));
+
+            }
+            else
+            {
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("SPLPrsReview4"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("SPLPrsReview5"));
+            }
+            if (estvalue < value1)
+            {
+                range.Value = "No Review";
+            }
+            else if (estvalue < value2)
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue <5)
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Fee Review";
                 }
             }
             else
             {
-                if (estvalue < 5)
+                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 15)
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Full Review";
                 }
             }
 
@@ -653,32 +675,33 @@ namespace SynEstTool
             range = worksheet.Cells[row, col];
             if (cterm == true)
             {
-                if (estvalue < 5)
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("SGCPrsReview1"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("SGCPrsReview2"));
+
+            }
+            else
+            {
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("SGCPrsReview4"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("SGCPrsReview5"));
+            }
+            if (estvalue < value1)
+            {
+                range.Value = "No Review";
+            }
+            else if (estvalue < value2)
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 15)
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Fee Review";
                 }
             }
             else
             {
-                if (estvalue < 15)
+                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 50)
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Full Review";
                 }
             }
             worksheet.Rows[row++].Font.Size = 9;
@@ -693,32 +716,33 @@ namespace SynEstTool
             range = worksheet.Cells[row, col];
             if (cterm == true)
             {
-                if (estvalue < 5)
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("OPSMngReview1"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("OPSMngReview2"));
+
+            }
+            else
+            {
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("OPSMngReview4"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("OPSMngReview5"));
+            }
+            if (estvalue < value1)
+            {
+                range.Value = "No Review";
+            }
+            else if (estvalue < value2)
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 15)
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Fee Review";
                 }
             }
             else
             {
-                if (estvalue < 15)
+                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 50)
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Full Review";
                 }
             }
             worksheet.Rows[row++].Font.Size = 9;
@@ -733,32 +757,33 @@ namespace SynEstTool
             range = worksheet.Cells[row, col];
             if (cterm == true)
             {
-                if (estvalue < 5)
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("VPCOOReview1"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("VPCOOReview2"));
+
+            }
+            else
+            {
+                value1 = double.Parse(ConfigurationManager.AppSettings.Get("VPCOOReview4"));
+                value2 = double.Parse(ConfigurationManager.AppSettings.Get("VPCOOReview5"));
+            }
+            if (estvalue < value1)
+            {
+                range.Value = "No Review";
+            }
+            else if (estvalue < value2)
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 15)
-                {
-                    range.Value = "";
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Fee Review";
                 }
             }
             else
             {
-                if (estvalue < 15)
+                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                if (range.Text == "")
                 {
-                    range.Value = "";
-                }
-                else if (estvalue < 50)
-                {
-                    range.Value = "";
-                }
-                else
-                {
-                    range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                    range.Value = "Full Review";
                 }
             }
             worksheet.Rows[row++].Font.Size = 9;
