@@ -27,6 +27,17 @@ namespace SynEstTool
         {
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             Configuration config = configuration;
+            foreach (Control control in this.Controls)
+            {
+                if (control is System.Windows.Forms.TextBox)
+                {
+                    config.AppSettings.Settings[control.Name].Value = control.Text;
+                }
+            }
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");
+            this.Dispose();
+            this.Close();
         }
     }
 }

@@ -426,7 +426,7 @@ namespace SynEstTool
                         {
                             config.AppSettings.Settings[control.Name].Value = control.Text;
                         }
-                    };
+                    }
                     config.Save(ConfigurationSaveMode.Modified);
                     ConfigurationManager.RefreshSection("appSettings");
                     Form1.Dispose();
