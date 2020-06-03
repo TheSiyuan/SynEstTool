@@ -61,6 +61,7 @@
             this.group1.Items.Add(this.BtnStart);
             this.group1.Label = "group1";
             this.group1.Name = "group1";
+            this.group1.Visible = false;
             // 
             // Consolidate
             // 
@@ -79,7 +80,7 @@
             this.group2.Items.Add(this.Btn_PrintEstList);
             this.group2.Items.Add(this.Btn_ColMap);
             this.group2.Items.Add(this.BtnRevCrit);
-            this.group2.Label = "group2";
+            this.group2.Label = "Active Estimate";
             this.group2.Name = "group2";
             // 
             // Btn_PrintEstList
