@@ -550,8 +550,33 @@ namespace SynEstTool
             worksheet.Rows[11].RowHeight = 4;
             worksheet.Rows[12].RowHeight = 4;
         }
+        
+        private void RangeReviewColorCoding(Range range, double estvalue, double value1, double value2)
+        {
+            if (estvalue < value1)
+            {
+                range.Value = "No Review";
+            }
+            else if (estvalue < value2)
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
+                if (range.Text == "")
+                {
+                    range.Value = "Fee Review";
+                }
+            }
+            else
+            {
+                range.Interior.Color = ColorTranslator.FromHtml("#ffcccc");
+                if (range.Text == "")
+                {
+                    range.Value = "Full Review";
+                }
+            }
+        }
         public void Est_Item_CopyPasteFormat (Active_Est_List list, Worksheet worksheet, int row, int col)//(class, targetsheet, target row, target col)
         {
+
             int i = col; //store the col value
             Range range;
             double value1, value2;
@@ -570,9 +595,10 @@ namespace SynEstTool
             col = i;
             //second row
             worksheet.Cells[row, col  ] = list.Est_List_EstValue;
-            var estvalue = (worksheet.Cells[row, col].Value2);
+            double estvalue;
             try
             {
+                estvalue = (worksheet.Cells[row, col].Value2);
                 estvalue = estvalue / 1000000;
             }
             catch (Exception error)
@@ -598,26 +624,7 @@ namespace SynEstTool
                 value1 = double.Parse(ConfigurationManager.AppSettings.Get("ChfEstReview4"));
                 value2 = double.Parse(ConfigurationManager.AppSettings.Get("ChfEstReview5"));
             }
-            if (estvalue < value1)
-            {
-                range.Value = "No Review";
-            }
-            else if (estvalue < value2)
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                if (range.Text == "")
-                {
-                    range.Value = "Fee Review";
-                }
-            }
-            else
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
-                if (range.Text == "")
-                {
-                    range.Value = "Full Review";
-                }
-            }
+            RangeReviewColorCoding(range, estvalue, value1, value2);
 
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
@@ -641,26 +648,7 @@ namespace SynEstTool
                 value1 = double.Parse(ConfigurationManager.AppSettings.Get("SPLPrsReview4"));
                 value2 = double.Parse(ConfigurationManager.AppSettings.Get("SPLPrsReview5"));
             }
-            if (estvalue < value1)
-            {
-                range.Value = "No Review";
-            }
-            else if (estvalue < value2)
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                if (range.Text == "")
-                {
-                    range.Value = "Fee Review";
-                }
-            }
-            else
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
-                if (range.Text == "")
-                {
-                    range.Value = "Full Review";
-                }
-            }
+            RangeReviewColorCoding(range, estvalue, value1, value2);
 
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
@@ -684,26 +672,7 @@ namespace SynEstTool
                 value1 = double.Parse(ConfigurationManager.AppSettings.Get("SGCPrsReview4"));
                 value2 = double.Parse(ConfigurationManager.AppSettings.Get("SGCPrsReview5"));
             }
-            if (estvalue < value1)
-            {
-                range.Value = "No Review";
-            }
-            else if (estvalue < value2)
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                if (range.Text == "")
-                {
-                    range.Value = "Fee Review";
-                }
-            }
-            else
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
-                if (range.Text == "")
-                {
-                    range.Value = "Full Review";
-                }
-            }
+            RangeReviewColorCoding(range, estvalue, value1, value2);
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //fifth row
@@ -725,26 +694,7 @@ namespace SynEstTool
                 value1 = double.Parse(ConfigurationManager.AppSettings.Get("OPSMngReview4"));
                 value2 = double.Parse(ConfigurationManager.AppSettings.Get("OPSMngReview5"));
             }
-            if (estvalue < value1)
-            {
-                range.Value = "No Review";
-            }
-            else if (estvalue < value2)
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                if (range.Text == "")
-                {
-                    range.Value = "Fee Review";
-                }
-            }
-            else
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
-                if (range.Text == "")
-                {
-                    range.Value = "Full Review";
-                }
-            }
+            RangeReviewColorCoding(range, estvalue, value1, value2);
             worksheet.Rows[row++].Font.Size = 9;
             col = i;
             //sixth row
@@ -766,26 +716,7 @@ namespace SynEstTool
                 value1 = double.Parse(ConfigurationManager.AppSettings.Get("VPCOOReview4"));
                 value2 = double.Parse(ConfigurationManager.AppSettings.Get("VPCOOReview5"));
             }
-            if (estvalue < value1)
-            {
-                range.Value = "No Review";
-            }
-            else if (estvalue < value2)
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fff5cc");
-                if (range.Text == "")
-                {
-                    range.Value = "Fee Review";
-                }
-            }
-            else
-            {
-                range.Interior.Color = ColorTranslator.FromHtml("#fffccc");
-                if (range.Text == "")
-                {
-                    range.Value = "Full Review";
-                }
-            }
+            RangeReviewColorCoding(range, estvalue, value1, value2);
             worksheet.Rows[row++].Font.Size = 9;
             worksheet.Rows[row++].RowHeight = 4;
             col = i;
